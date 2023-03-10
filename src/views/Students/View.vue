@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="container">
         <div class="card">
             <div class="card-header">
                 <h4>
                     Students
-                    <RouterLink to="/students/create" class="btn btn-primary float-end">
+                    <RouterLink to="/" class="btn btn-primary float-end">
                         Add Student
                     </RouterLink>
                 </h4>
@@ -19,13 +19,29 @@
                         <th>Created At</th>
                         <th>Action</th>             
                     </thead>
-                    <tbody>
-                        <td>1</td>
-                        <td>Khusnul Yulandari</td>
-                        <td>PHP</td>
-                        <td>0831445212</td>
-                        <td>10 March 2023</td>
-                        <td>Action</td>
+                    <tbody v-if="this.students.length > 0">
+                        <tr v-for="(student, index) in this.students" :key="index">
+                            <td>{{ student.id }}</td>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.course }}</td>
+                            <td>{{ student.phone }}</td>
+                            <td>{{ student.created_at }}</td>
+                            <td>
+                                <RouterLink to="/" class="btn btn-warning">
+                                    Edit
+                                </RouterLink>
+                                <button type="button" class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody v-else>
+                        <tr>
+                            <td colspan="7">
+                                Loading Data...
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -50,7 +66,8 @@ import axios from 'axios'
         methods: {
             getStudents() {
                 axios.get('http://127.0.0.1:8000/api/students').then( res => {
-                    console.log(res)
+                    this.students = res.data.students
+                    // console.log(this.getStudents)
                 } );
             }
         }
