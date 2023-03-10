@@ -32,3 +32,28 @@
         </div>
     </div>
 </template>
+
+<script>
+
+import axios from 'axios'
+
+    export default {
+        name: 'students',
+        data() {
+            return {
+                students: []
+            }
+        },
+        mounted() {
+            this.getStudents();
+        },
+        methods: {
+            getStudents() {
+                axios.get('http://127.0.0.1:8000/api/students').then( res => {
+                    console.log(res)
+                } );
+            }
+        }
+    }
+
+</script>
