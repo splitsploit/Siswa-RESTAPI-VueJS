@@ -28,7 +28,7 @@
                     <label for="">Phone</label>
                     <input type="text" class="form-control" v-model="model.student.phone">
                 </div><div class="mb-3">
-                    <button type="button" @click="saveStudent" class="btn btn-primary">Save</button>
+                    <button type="button" @click="updateStudent" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
@@ -43,6 +43,7 @@ import axios from 'axios';
         name: 'studentEdit',
         data () {
             return {
+                studentId: '',
                 errorList: '',
                 model: {
                     student: {
@@ -58,6 +59,7 @@ import axios from 'axios';
 
         mounted () {
             // console.log(this.$route.params.id);
+            this.studentId = this.$route.params.id;
             this.getStudentData(this.$route.params.id);
         },
 
@@ -85,21 +87,15 @@ import axios from 'axios';
                 
             },
 
-            saveStudent() {
+            updateStudent() {
 
                 var mythis = this;
 
-                axios.post('http://127.0.0.1:8000/api/students', this.model.student).then( res => {
+                axios.put(`http://127.0.0.1:8000/api/students/${this.studentId}/update`, this.model.student).then( res => {
 
                     console.log(res.data)
                     alert(res.data.message);
 
-                    this.model.student = {
-                            name: '',
-                            course: '',
-                            email: '',
-                            phone: '',
-                    }
 
                     this.errorList = '';
                 })
@@ -110,6 +106,12 @@ import axios from 'axios';
                         if(error.response.status == 422) {
 
                             mythis.errorList = error.response.data.errors;
+
+                        }
+
+                        if(error.response.status == 404) {
+
+                            alert(error.response.data.message);
 
                         }
                 
