@@ -1,6 +1,8 @@
-# Siswa Simple CRUD which has integrated with Laravel RestFul API. Built with VueJS 3, and using Axios to connected with API
+# Siswa Simple CRUD Apps
 
-## API Link : https://github.com/splitsploit/Siswa-Laravel-RESTAPI
+Integrated with Laravel RestFul API. Built with VueJS 3, and using Axios to connected with API
+
+#### API Link : https://github.com/splitsploit/Siswa-Laravel-RESTAPI
 
 ## Project Setup
 
