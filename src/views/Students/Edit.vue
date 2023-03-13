@@ -70,7 +70,19 @@ import axios from 'axios';
                     console.log(res.data.student)
 
                     this.model.student = res.data.student
-                } );
+                })
+
+                .catch(function (error) {
+
+                    if (error.response) {
+
+                        if(error.response.status == 404) {
+                            alert(error.response.data.message)
+                        }
+                    }
+                })
+                
+                
             },
 
             saveStudent() {
