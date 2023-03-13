@@ -40,7 +40,7 @@
 import axios from 'axios';
 
     export default {
-        name: 'studentsCreate',
+        name: 'studentEdit',
         data () {
             return {
                 errorList: '',
@@ -55,7 +55,23 @@ import axios from 'axios';
                 }
             }
         },
+
+        mounted () {
+            // console.log(this.$route.params.id);
+            this.getStudentData(this.$route.params.id);
+        },
+
         methods: {
+
+            getStudentData(studentId) {
+
+                axios.get(`http://127.0.0.1:8000/api/students/${studentId}/edit`)
+                .then( res => {
+                    console.log(res.data.student)
+
+                    this.model.student = res.data.student
+                } );
+            },
 
             saveStudent() {
 
