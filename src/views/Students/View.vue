@@ -30,7 +30,7 @@
                                 <RouterLink :to="{ path: '/students/'+student.id+'/edit' }" class="btn btn-warning mx-2">
                                     Edit
                                 </RouterLink>
-                                <button type="button" class="btn btn-danger">
+                                <button type="button" class="btn btn-danger" @click="deleteStudent(student.id)">
                                     Delete
                                 </button>
                             </td>
@@ -69,6 +69,33 @@ import axios from 'axios'
                     this.students = res.data.students
                     // console.log(this.getStudents)
                 } );
+            },
+
+            deleteStudent(studentId) {
+
+                if (confirm('Are You Sure Delete This Student?')) {
+
+                    // console.log(studentId)
+                    axios.delete(`http://127.0.0.1:8000/api/students/${studentId}/delete`)
+                    .then( res => {
+
+                        alert(res.data.message);
+                        this.getStudents();
+
+                    });
+
+                    // .catch(function (error) {
+
+                    // if (error.response) {
+
+                    //     if(error.response.status == 404) {
+                    //         alert(error.response.data.message)
+                    //     }
+                    // }
+                    // })
+
+                }
+            
             }
         }
     }
