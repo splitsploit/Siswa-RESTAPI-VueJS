@@ -1,14 +1,8 @@
-# .
+# Siswa Simple CRUD Apps
 
-This template should help get you started developing with Vue 3 in Vite.
+Integrated with Laravel RestFul API. Built with VueJS 3, and using Axios to connected with API
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+#### API Link : https://github.com/splitsploit/Siswa-Laravel-RESTAPI
 
 ## Project Setup
 
